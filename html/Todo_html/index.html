@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Todoリスト</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/todo.css">
+</head>
+<body>
+
+
+	<div class="container-fluid top">
+		<div class="container">
+			<h1>Todoリスト</h1>
+		</div>
+	</div><!--topの閉じ-->
+	<div class="color">
+	<div class="container body">
+		<div class="alert alert-success" role="alert">
+		 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		 <span aria-hidden="true">&times;</span></button>
+			<p>
+			
+			<b>完了しました！</b><p>
+			<ul>
+				<li>No.27のToDoを更新しました。</li>
+			</ul>
+		</div><!--alert-success-->
+		
+		<div class="alert alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		 <span aria-hidden="true">&times;</span></button>
+			<p>
+			
+			<b>エラーが発生しました！</b></p>
+				<ul>
+					<li>題名は入力必須です。</li>
+					<li>題名は100字以内にしてください。</li>
+					<li>期限は「YYYY/MM/DD」形式で入力してください。</li>
+				</ul>
+		</div><!--alert-danger-->
+		
+		<div class="container" name="list">
+			<table class="table">
+				<tr>
+					<th>#</th>
+					<th>題名</th>
+					<th>重要度</th>
+					<th>期限</th>
+				</tr>
+				
+				<tr>
+					<td>1</td>
+					<td>テストテスト</td>
+					<td>★★★</td>
+					<td>2015/06/20</td>
+				</tr>
+				
+				<tr>
+					<td>2</td>
+					<td>テストテスト</td>
+					<td>★</td>
+					<td>2015/06/22</td>
+				</tr>
+				
+				<tr>
+					<td>3</td>
+					<td>テストテスト</td>
+					<td>★★★</td>
+					<td>2015/06/20</td>
+				</tr>
+				
+				<tr>
+					<td>4</td>
+					<td>テストテスト</td>
+					<td>★★</td>
+					<td></td>
+				</tr>
+			</table>
+			
+		</div><!--list-->
+		<form >
+		<button type="button" class="btn btn-primary" onclick="location.href='entry.html'">追加</button>
+	
+	</div><!--body-->
+	</div><!--color-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
