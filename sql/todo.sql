@@ -6,12 +6,12 @@ CREATE table todo(
 );
 
 insert into todo(id,name,priority,timelimit)
-values ('1','ƒeƒXƒg1','ššš','2015-06-20');
+values ('1','ãƒ†ã‚¹ãƒˆ1','â˜…â˜…â˜…','2015-06-20');
 
 insert into todo(id,name,priority,timelimit)
-values ('2','ƒeƒXƒg2','šš','2015-06-22');
+values ('2','ãƒ†ã‚¹ãƒˆ2','â˜…â˜…','2015-06-22');
 
 insert into todo(id,name,priority,timelimit)
-values ('3','ƒeƒXƒg3','š','2015-06-25');
+values ('3','ãƒ†ã‚¹ãƒˆ3','â˜…','2015-06-25');
 
 
