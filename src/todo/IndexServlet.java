@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import todo_utils.DBUtils;
+import todo.utils.DBUtils;
 
 @WebServlet("/index.html")
 public class IndexServlet extends HttpServlet {
@@ -29,15 +29,15 @@ public class IndexServlet extends HttpServlet {
 
 			//DBと接続する
 			con = DBUtils.getConnection();
-			sql = "SELECT * FROM todo ORDER BY id";
+			sql = "SELECT id,name,detail,priority,timelimit FROM todo ORDER BY id";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 
-			List<String> id = new ArrayList();
-			List<String> name = new ArrayList();
-			List<String> detail = new ArrayList();
-			List<String> priority = new ArrayList();
-			List<String> timelimit = new ArrayList();
+			List<String> id = new ArrayList<>();
+			List<String> name = new ArrayList<>();
+			List<String> detail = new ArrayList<>();
+			List<String> priority = new ArrayList<>();
+			List<String> timelimit = new ArrayList<>();
 
 			//DBの値の取り出し
 			while(rs.next()){
