@@ -50,12 +50,12 @@
 
 			<!-- DBから取得した値をループで出力 -->
 
-			<c:forEach var="i" items="${id}" varStatus="s">
+			<c:forEach var="f" items="${form}">
 				<tr>
-					<td>${i}</td>
-					<td><a href="update.html">${name[s.index]}</a></td>
-					<td>${priority[s.index]}</td>
-					<td>${timelimit[s.index]}</td>
+					<td>${f.id}</td>
+					<td><a href="update.html">${f.name}</a></td>
+					<td>${f.priority}</td>
+					<td>${f.timelimit}</td>
 				</tr>
 			</c:forEach>
 
