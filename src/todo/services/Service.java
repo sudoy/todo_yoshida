@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import todo.forms.EntryForm;
 import todo.forms.IndexForm;
 import todo.utils.DBUtils;
 import todo.utils.HTMLUtils;
@@ -55,14 +56,15 @@ public class Service{
 		}
 	}
 
-	public void insert(IndexForm form) throws ServletException {
+	public void insert(EntryForm form) throws ServletException {
 
+		//EntryServletで使用
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 
 		try{
-
+			//DBへinsert
 			con = DBUtils.getConnection();
 			sql = "INSERT INTO todo (name,detail,priority,timelimit) VALUES (?,?,?,?)";
 

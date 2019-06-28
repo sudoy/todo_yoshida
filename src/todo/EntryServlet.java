@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import todo.forms.IndexForm;
+import todo.forms.EntryForm;
 import todo.services.Service;
 
 @WebServlet("/entry.html")
@@ -33,8 +33,9 @@ public class EntryServlet extends HttpServlet {
 		String timelimit = req.getParameter("timelimit");
 
 		//formに代入
-		IndexForm form = new IndexForm(name,detail,priority,timelimit);
+		EntryForm form = new EntryForm(name,detail,priority,timelimit);
 
+		//Serviceのinsertメソッドを利用
 		Service s = new Service();
 		s.insert(form);
 		resp.sendRedirect("index.html");
