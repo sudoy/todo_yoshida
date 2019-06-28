@@ -7,6 +7,7 @@
 	<jsp:include page="header.jsp" />
 
 <body>
+
 	<div class="container-fluid top">
 		<div class="container">
 			<h1>Todoリスト</h1>
@@ -43,18 +44,18 @@
 				<p><b>登録フォーム</b></p>
 				<hr>
 			</div><!--submitform-->
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="POST" action="entry.html">
 	  			<div class="form-group">
 	    			<label for="inputPassword3" class="col-sm-2 control-label">題名</label>
 	    		<div class="col-sm-8">
-					<input type="text" class="form-control" name="price" placeholder="題名">
+					<input type="text" class="form-control" name="name" placeholder="題名">
 	    		</div>
 	  			</div>
 
 	 		 <div class="form-group">
 	    		<label for="inputPassword3" class="col-sm-2 control-label">詳細</label>
 	    		<div class="col-sm-8">
-	    			<textarea class="form-control" name="comment" placeholder="詳細"></textarea>
+	    			<textarea class="form-control" name="detail" placeholder="詳細"></textarea>
 	    		</div>
 	  		</div><!--form-group閉じ-->
 
@@ -62,13 +63,13 @@
 	    		<label for="inputPassword3" class="col-sm-2 control-label">重要度</label>
 	   			 <div class="col-sm-4" id="radio">
 	    			<label class="radio-inline">
-	 				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option3" checked>★★★
+	 				<input type="radio" name="priority" id="inlineRadio1" value="3" checked>★★★
 					</label><br>
 					<label class="radio-inline">
-	  				<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">★★
+	  				<input type="radio" name="priority" id="inlineRadio2" value="2">★★
 					</label><br>
 					<label class="radio-inline">
-	  				<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1">★
+	  				<input type="radio" name="priority" id="inlineRadio3" value="1">★
 					</label>
 	    		</div><!--radio閉じ-->
 	  		</div><!--form-group閉じ-->
@@ -76,7 +77,7 @@
 	  		<div class="form-group">
 	    		<label for="inputPassword3" class="col-sm-2 control-label">期限</label>
 	    		<div class="col-sm-8">
-					<input type="text" class="form-control" name="price" placeholder="期限">
+					<input type="text" class="form-control" name="timelimit" placeholder="期限">
 	    		</div>
 	  		</div><!--form-group閉じ-->
 
@@ -84,14 +85,13 @@
 	    		<div class="col-sm-offset-2 col-sm-4">
 	    				<button type="button" class="btn btn-default"
 	    				onclick="location.href='index.html'">キャンセル</button>
-	    				<button type="button" class="btn btn-primary"
-	    				 onclick="location.href='index.html'">追加</button>
+	    				<button type="submit" class="btn btn-primary">追加</button>
 				</div>
 			</div><!--form-group閉じ-->
-
 	  		</form><!--form-horizontal-->
 		</div><!--body-->
 	</div>
 	<jsp:include page="footer.jsp" />
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-package todo;
+package todo.utils;
 
 public class HTMLUtils {
 
@@ -13,6 +13,19 @@ public class HTMLUtils {
 			return date;
 		}else {
 			return timelimit;
+		}
+
+	}
+
+	public static String priority(String priority) {
+		if(priority.equals("3")) {
+			return "★★★";
+		}else if(priority.equals("2")){
+			return "★★" ;
+		}else if(priority.equals("1")){
+			return "★";
+		}else {
+			return "";
 		}
 	}
 }

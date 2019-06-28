@@ -55,4 +55,14 @@ public class IndexForm {
 		this.priority = priority;
 		this.timelimit = timelimit;
 	}
+
+	public IndexForm(String name, String detail, String priority, String timelimit) {
+		super();
+		this.name = name;
+		this.detail = detail;
+		this.priority = priority;
+		this.timelimit = timelimit;
+	}
+
+
 }
