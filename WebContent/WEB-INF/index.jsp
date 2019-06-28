@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -47,34 +48,19 @@
 					<th>期限</th>
 				</tr>
 
-				<tr>
-					<td>1</td>
-					<td><a href="update.html">テストテスト</a></td>
-					<td>★★★</td>
-					<td>2015/06/20</td>
-				</tr>
+			<!-- DBから取得した値をループで出力 -->
 
+			<c:forEach var="i" items="${id}" varStatus="s">
 				<tr>
-					<td>2</td>
-					<td><a href="update.html">テストテスト</a></td>
-					<td>★</td>
-					<td>2015/06/22</td>
+					<td>${i}</td>
+					<td><a href="update.html">${name[s.index]}</a></td>
+					<td>${priority[s.index]}</td>
+					<td>${timelimit[s.index]}</td>
 				</tr>
+			</c:forEach>
 
-				<tr>
-					<td>3</td>
-					<td><a href="update.html">テストテスト</a></td>
-					<td>★★★</td>
-					<td>2015/06/20</td>
-				</tr>
-
-				<tr>
-					<td>4</td>
-					<td><a href="update.html">テストテスト</a></td>
-					<td>★★</td>
-					<td></td>
-				</tr>
 			</table>
+
 
 		</div><!--list-->
 
