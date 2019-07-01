@@ -64,7 +64,7 @@ public class EntryServlet extends HttpServlet {
 			error += message;
 		}
 
-		if(100 < form.getDetail().length()) {
+		if(100 < form.getName().length()) {
 			error += message;
 		}
 
