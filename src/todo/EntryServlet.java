@@ -56,7 +56,6 @@ public class EntryServlet extends HttpServlet {
 	private String validate(EntryForm form) {
 		String error = "";
 		String message = "error";
-		LocalDate date = null;
 		int priority = Integer.parseInt(form.getPriority());
 
 		//題名
@@ -68,20 +67,20 @@ public class EntryServlet extends HttpServlet {
 			error += message;
 		}
 
-		//重要度
-		if(3 < priority ) {
+		//重要度　修正
+		if(priority < 1 || 3 < priority) {
 			error += message;
 		}
 
-		//期限
+		//期限　修正
 		try {
 			if(form.getTimelimit().equals("")) {
 				form.setTimelimit(null);
 
 			}else if(form.getTimelimit().contains("/")){
-				date.parse(HTMLUtils.change(form.getTimelimit()));
+				LocalDate.parse(HTMLUtils.change(form.getTimelimit()));
 			}else {
-				date.parse(form.getTimelimit());
+				LocalDate.parse(form.getTimelimit());
 			}
 
 		}catch(RuntimeException e){
