@@ -1,6 +1,7 @@
 package todo;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import todo.forms.EntryForm;
 import todo.services.Service;
+import todo.utils.HTMLUtils;
 
 @WebServlet("/entry.html")
 public class EntryServlet extends HttpServlet {
@@ -35,9 +37,59 @@ public class EntryServlet extends HttpServlet {
 		//formに代入
 		EntryForm form = new EntryForm(name,detail,priority,timelimit);
 
-		//Serviceのinsertメソッドを利用
-		Service s = new Service();
-		s.insert(form);
-		resp.sendRedirect("index.html");
+		//error処理
+		if(!validate(form).equals("")) {
+
+			resp.sendRedirect("entry.html");
+
+		}else {
+
+			//Serviceのinsertメソッドを利用
+			Service s = new Service();
+			s.insert(form);
+			resp.sendRedirect("index.html");
+		}
+
+	}
+
+	//error処理用メソッド
+	private String validate(EntryForm form) {
+		String error = "";
+		String message = "error";
+		LocalDate date = null;
+		int priority = Integer.parseInt(form.getPriority());
+
+		//題名
+		if(form.getName().equals("")) {
+			error += message;
+		}
+
+		if(100 < form.getDetail().length()) {
+			error += message;
+		}
+
+		//重要度
+		if(3 < priority ) {
+			error += message;
+		}
+
+		//期限
+		try {
+			if(form.getTimelimit().equals("")) {
+				form.setTimelimit(null);
+
+			}else if(form.getTimelimit().contains("/")){
+				date.parse(HTMLUtils.change(form.getTimelimit()));
+			}else {
+				date.parse(form.getTimelimit());
+			}
+
+		}catch(RuntimeException e){
+			error += message;
+		}
+
+
+		return error;
+
 	}
 }

@@ -17,6 +17,15 @@ public class HTMLUtils {
 
 	}
 
+	public static String change(String timelimit) {
+		String date;
+		String year = timelimit.substring(0, 4) + "-";
+		String month = timelimit.substring(5,7) + "-";
+		String day = timelimit.substring(8,10);
+		date = year + month + day ;
+		return date;
+	}
+
 	public static String priority(String priority) {
 		if(priority.equals("3")) {
 			return "★★★";

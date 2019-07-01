@@ -1,6 +1,6 @@
 CREATE table todo(
 	id int primary key auto_increment,
-	name varchar(50),
+	name varchar(100),
 	detail text,
 	priority int,
 	timelimit date
