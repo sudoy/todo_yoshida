@@ -2,6 +2,8 @@ package todo;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,9 +40,14 @@ public class EntryServlet extends HttpServlet {
 		EntryForm form = new EntryForm(name,detail,priority,timelimit);
 
 		//error処理
-		if(!validate(form).equals("")) {
+		if(!(validate(form).size() == 0)) {
 
-			resp.sendRedirect("entry.html");
+			req.setAttribute("error", validate(form));
+			req.setAttribute("form", form);
+
+			getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp")
+			.forward(req, resp);
+			return;
 
 		}else {
 
@@ -49,31 +56,33 @@ public class EntryServlet extends HttpServlet {
 			s.insert(form);
 			resp.sendRedirect("index.html");
 		}
-
 	}
 
 	//error処理用メソッド
-	private String validate(EntryForm form) {
-		String error = "";
-		String message = "error";
+	private List<String> validate(EntryForm form) {
+
+		//errorメッセージを貯める
+		List<String> errorList = new ArrayList<>();
 		int priority = Integer.parseInt(form.getPriority());
 
 		//題名
 		if(form.getName().equals("")) {
-			error += message;
+			errorList.add("題名の入力は必須です");
 		}
 
 		if(100 < form.getName().length()) {
-			error += message;
+			errorList.add("題名は100文字以内です。");
 		}
 
-		//重要度　修正
+		//重要度
 		if(priority < 1 || 3 < priority) {
-			error += message;
+			errorList.add("重要度の値が間違っています");
 		}
 
-		//期限　修正
+		//期限
+
 		try {
+
 			if(form.getTimelimit().equals("")) {
 				form.setTimelimit(null);
 
@@ -83,12 +92,14 @@ public class EntryServlet extends HttpServlet {
 				LocalDate.parse(form.getTimelimit());
 			}
 
-		}catch(RuntimeException e){
-			error += message;
+		}catch(NullPointerException e) {
+			return errorList;
+		}catch(RuntimeException e) {
+			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
+			return errorList;
 		}
 
-
-		return error;
+		return errorList;
 
 	}
 }

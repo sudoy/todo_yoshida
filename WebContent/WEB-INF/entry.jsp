@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -16,30 +17,18 @@
 
 	<div class="color">
 	<div class="container body">
-		<div class="alert alert-success" role="alert">
-		 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		 <span aria-hidden="true">&times;</span></button>
-			<p>
 
-			<b>完了しました！</b><p>
-			<ul>
-				<li>No.27のToDoを更新しました。</li>
-			</ul>
-		</div><!--alert-success-->
 
-		<div class="alert alert-danger" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		 <span aria-hidden="true">&times;</span></button>
-			<p>
 
-			<b>エラーが発生しました！</b></p>
-				<ul>
-					<li>題名は入力必須です。</li>
-					<li>題名は100字以内にしてください。</li>
-					<li>期限は「YYYY/MM/DD」形式で入力してください。</li>
-				</ul>
-		</div><!--alert-danger-->
+		<jsp:include page="_success.jsp" />
 
+
+
+	<c:if test="${error != null}">
+
+		<jsp:include page="_danger.jsp" />
+
+	</c:if>
 			<div class="submitform">
 				<p><b>登録フォーム</b></p>
 				<hr>
@@ -48,15 +37,19 @@
 	  			<div class="form-group">
 	    			<label for="inputPassword3" class="col-sm-2 control-label">題名</label>
 	    		<div class="col-sm-8">
-					<input type="text" class="form-control" name="name" placeholder="題名">
+					<input type="text" class="form-control" name="name" placeholder="題名" value="${form.name}">
 	    		</div>
 	  			</div>
 
 	 		 <div class="form-group">
 	    		<label for="inputPassword3" class="col-sm-2 control-label">詳細</label>
+
 	    		<div class="col-sm-8">
-	    			<textarea class="form-control" name="detail" placeholder="詳細"></textarea>
+
+	    		<!-- textareaはvalueに入れない -->
+	    			<textarea class="form-control" name="detail" placeholder="詳細">${form.detail}</textarea>
 	    		</div>
+
 	  		</div><!--form-group閉じ-->
 
 	   		<div class="form-group">
@@ -77,7 +70,7 @@
 	  		<div class="form-group">
 	    		<label for="inputPassword3" class="col-sm-2 control-label">期限</label>
 	    		<div class="col-sm-8">
-					<input type="text" class="form-control" name="timelimit" placeholder="期限">
+					<input type="text" class="form-control" name="timelimit" placeholder="期限" value="${form.timelimit}">
 	    		</div>
 	  		</div><!--form-group閉じ-->
 
