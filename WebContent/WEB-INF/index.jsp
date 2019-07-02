@@ -7,7 +7,6 @@
 <jsp:include page="header.jsp" />
 <body>
 
-
 	<div class="container-fluid top">
 		<div class="container">
 			<h1>Todoリスト</h1>
@@ -39,23 +38,28 @@
 				</ul>
 		</div><!--alert-danger-->
 
+
 		<div class="container list">
 			<table class="table">
+
 				<tr>
 					<th>#</th>
 					<th>題名</th>
 					<th>重要度</th>
 					<th>期限</th>
 				</tr>
-
 			<!-- DBから取得した値をループで出力 -->
 
 			<c:forEach var="f" items="${form}">
 				<tr>
+
+				<!-- getでid値を送信する -->
+
 					<td>${f.id}</td>
-					<td><a href="update.html">${f.name}</a></td>
+					<td><a href="update.html?id=${f.id}">${f.name}</a></td>
 					<td>${f.priority}</td>
 					<td>${f.timelimit}</td>
+
 				</tr>
 			</c:forEach>
 

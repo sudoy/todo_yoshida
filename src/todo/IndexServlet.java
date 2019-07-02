@@ -19,6 +19,8 @@ public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		req.setCharacterEncoding("UTF-8");
+
 		Service s = new Service();
 		List<IndexForm> form = new ArrayList<>();
 		form = s.find();
