@@ -25,19 +25,6 @@
 			</ul>
 		</div><!--alert-success-->
 
-		<div class="alert alert-danger" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		 <span aria-hidden="true">&times;</span></button>
-			<p>
-
-			<b>エラーが発生しました！</b></p>
-				<ul>
-					<li>題名は入力必須です。</li>
-					<li>題名は100字以内にしてください。</li>
-					<li>期限は「YYYY/MM/DD」形式で入力してください。</li>
-				</ul>
-		</div><!--alert-danger-->
-
 
 		<div class="container list">
 			<table class="table">

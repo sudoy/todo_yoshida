@@ -131,8 +131,8 @@ public class Service{
 	}
 
 	public void update(UpdateForm form) throws ServletException {
-		;
-		//EntryServletで使用
+
+		//UpdateServletで使用
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
@@ -148,6 +148,32 @@ public class Service{
 			ps.setString(3, form.getPriority());
 			ps.setString(4, form.getTimelimit());
 			ps.setString(5, form.getId());
+			ps.executeUpdate();
+
+		}catch(Exception e){
+			throw new ServletException(e);
+		}finally{
+			try{
+				DBUtils.close(con, ps);
+			}catch(Exception e){}
+		}
+
+	}
+
+	public void delete(String id) throws ServletException {
+
+		//DeleteServletで使用
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+
+		try{
+			//DBの値を削除
+			con = DBUtils.getConnection();
+			sql = "DELETE from todo where id = ?;";
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
 			ps.executeUpdate();
 
 		}catch(Exception e){

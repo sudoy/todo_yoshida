@@ -39,10 +39,14 @@ public class EntryServlet extends HttpServlet {
 		//formに代入
 		EntryForm form = new EntryForm(name,detail,priority,timelimit);
 
-		//error処理
-		if(!(validate(form).size() == 0)) {
+		//validate()は変数化
+		List<String>validateform = new ArrayList<>();
+		validateform = validate(form);
 
-			req.setAttribute("error", validate(form));
+		//error処理
+		if(!(validateform.size() == 0)) {
+
+			req.setAttribute("error", validateform);
 			req.setAttribute("form", form);
 
 			getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp")

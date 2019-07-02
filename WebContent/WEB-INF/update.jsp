@@ -86,9 +86,12 @@
     		<div class="col-sm-offset-2 col-sm-8">
     			<button type="button" class="btn btn-default"
     			onclick="location.href='index.html'">キャンセル</button>
-    			<button type="submit" class="btn btn-primary">更新</button>
-    			<button type="button" class="btn btn-danger"
-    			onclick="location.href='index.html'">削除</button>
+    			<button type="submit" class="btn btn-primary" name="update">更新</button>
+
+    			<!-- aタグがbuttonタグを兼ね備えている -->
+
+    			<a href="delete.html?id=${form.id}" class="btn btn-danger">削除</a>
+
 			</div>
 		</div><!--form-group閉じ-->
 

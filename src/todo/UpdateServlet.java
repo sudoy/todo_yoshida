@@ -38,17 +38,22 @@ public class UpdateServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 
+
 		String id = req.getParameter("id");
 		String name = req.getParameter("name");
-		String detail = req.getParameter("detail");
+		String detail = req.getParameter("delete");
 		String priority = req.getParameter("priority");
 		String timelimit = req.getParameter("timelimit");
 		UpdateForm form = new UpdateForm(id,name,detail,priority,timelimit);
 
-		//error処理
-		if (!(validate(form).size() == 0)) {
+		//validate()は変数化
+		List<String> validateform = new ArrayList<>();
+		validateform = validate(form);
 
-			req.setAttribute("error", validate(form));
+		//error処理
+		if (!(validateform.size() == 0)) {
+
+			req.setAttribute("error", validateform);
 			req.setAttribute("form", form);
 
 			getServletContext().getRequestDispatcher("/WEB-INF/update.jsp")
