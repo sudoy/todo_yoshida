@@ -22,7 +22,7 @@ public class UpdateServlet extends HttpServlet {
 		String id = req.getParameter("id");
 		Service s = new Service();
 		UpdateForm form = new UpdateForm();
-		form = s.update(id);
+		form = s.find(id);
 		req.setAttribute("form", form);
 
 		getServletContext().getRequestDispatcher("/WEB-INF/update.jsp").forward(req, resp);

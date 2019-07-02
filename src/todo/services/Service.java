@@ -16,7 +16,7 @@ import todo.utils.HTMLUtils;
 
 public class Service{
 
-	public List<IndexForm> find () throws ServletException {
+	public List<IndexForm> findAll () throws ServletException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
@@ -86,7 +86,7 @@ public class Service{
 		}
 	}
 
-	public UpdateForm update (String id) throws ServletException {
+	public UpdateForm find (String id) throws ServletException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
@@ -95,8 +95,10 @@ public class Service{
 
 			//DBと接続する
 			con = DBUtils.getConnection();
-			sql = "SELECT id,name,detail,priority,timelimit FROM todo WHERE id =" + id;
+			//プレースホルダーを使う
+			sql = "SELECT id,name,detail,priority,timelimit FROM todo WHERE id = ?";
 			ps = con.prepareStatement(sql);
+			ps.setString(1,id);
 			rs = ps.executeQuery();
 
 			UpdateForm f = new UpdateForm();

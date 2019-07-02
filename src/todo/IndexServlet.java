@@ -23,7 +23,7 @@ public class IndexServlet extends HttpServlet {
 
 		Service s = new Service();
 		List<IndexForm> form = new ArrayList<>();
-		form = s.find();
+		form = s.findAll();
 		req.setAttribute("form", form);
 
 		//値をjspに送信
