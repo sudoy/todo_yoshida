@@ -57,7 +57,8 @@
 	   			 <div class="col-sm-4" id="radio">
 
 	    			<label class="radio-inline">
-	 				<input type="radio" name="priority" id="inlineRadio1" value="3" checked>★★★
+	 				<input type="radio" name="priority" id="inlineRadio1" value="3"
+	 				<c:if test="${form.priority == 3 || form.priority == null}">checked</c:if>>★★★
 					</label><br>
 
 					<label class="radio-inline">
