@@ -55,15 +55,21 @@
 	   		<div class="form-group">
 	    		<label for="inputPassword3" class="col-sm-2 control-label">重要度</label>
 	   			 <div class="col-sm-4" id="radio">
+
 	    			<label class="radio-inline">
 	 				<input type="radio" name="priority" id="inlineRadio1" value="3" checked>★★★
 					</label><br>
+
 					<label class="radio-inline">
-	  				<input type="radio" name="priority" id="inlineRadio2" value="2">★★
+	  				<input type="radio" name="priority" id="inlineRadio2" value="2"
+	  				<c:if test="${form.priority == 2}">checked</c:if>>★★
 					</label><br>
+
 					<label class="radio-inline">
-	  				<input type="radio" name="priority" id="inlineRadio3" value="1">★
+	  				<input type="radio" name="priority" id="inlineRadio3" value="1"
+	  				<c:if test="${form.priority == 1}">checked</c:if>>★
 					</label>
+
 	    		</div><!--radio閉じ-->
 	  		</div><!--form-group閉じ-->
 
