@@ -77,7 +77,8 @@
 	  		<div class="form-group">
 	    		<label for="inputPassword3" class="col-sm-2 control-label">期限</label>
 	    		<div class="col-sm-8">
-					<input type="text" class="form-control" name="timelimit" placeholder="期限" value="${form.timelimit}">
+					<input type="text" class="form-control" name="timelimit" placeholder="期限"
+					 value="${form.timelimit}">
 	    		</div>
 	  		</div><!--form-group閉じ-->
 

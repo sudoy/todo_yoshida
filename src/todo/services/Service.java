@@ -129,4 +129,35 @@ public class Service{
 
 		}
 	}
+
+	public void update(UpdateForm form) throws ServletException {
+		;
+		//EntryServletで使用
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+
+		try{
+			//DBへinsert
+			con = DBUtils.getConnection();
+			sql = "UPDATE todo set name=?, detail=?, priority=?, timelimit=? where id = ?";
+
+			ps = con.prepareStatement(sql);
+			ps.setString(1, form.getName());
+			ps.setString(2, form.getDetail());
+			ps.setString(3, form.getPriority());
+			ps.setString(4, form.getTimelimit());
+			ps.setString(5, form.getId());
+			ps.executeUpdate();
+
+		}catch(Exception e){
+			throw new ServletException(e);
+		}finally{
+			try{
+				DBUtils.close(con, ps);
+			}catch(Exception e){}
+		}
+
+	}
+
 }
