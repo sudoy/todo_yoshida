@@ -105,6 +105,7 @@ public class UpdateServlet extends HttpServlet {
 
 		if(form.getTimelimit().length() != 10) {
 			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
+			return errorList;
 		}
 
 		try {

@@ -25,14 +25,13 @@ public class IndexServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		String message = (String)session.getAttribute("message");
 		String id = (String) session.getAttribute("id");
-		System.out.println(message);
 
 		Service s = new Service();
 		List<IndexForm> form = new ArrayList<>();
 		form = s.findAll();
 
 		session.setAttribute("message",message);
-		//idを出したい
+
 		session.setAttribute("id", id);
 		req.setAttribute("form", form);
 

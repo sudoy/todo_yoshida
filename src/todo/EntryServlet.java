@@ -66,6 +66,7 @@ public class EntryServlet extends HttpServlet {
 			s.insert(form);
 
 			session.setAttribute("message", "追加");
+			session.setAttribute("id", "todo");
 			session.setAttribute("error", validateform);
 			resp.sendRedirect("index.html");
 
@@ -96,8 +97,9 @@ public class EntryServlet extends HttpServlet {
 
 		//期限
 
-		if(form.getTimelimit().length() != 10) {
+		if(form.getTimelimit().length() != 10 && !(form.getTimelimit().equals(""))) {
 			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
+			return errorList;
 		}
 
 		try {
