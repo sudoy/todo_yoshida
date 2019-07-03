@@ -66,10 +66,8 @@ public class EntryServlet extends HttpServlet {
 			s.insert(form);
 
 			session.setAttribute("message", "追加");
-			System.out.println("hogehoge");
 			session.setAttribute("error", validateform);
 			resp.sendRedirect("index.html");
-
 
 		}
 	}
@@ -97,6 +95,11 @@ public class EntryServlet extends HttpServlet {
 		}
 
 		//期限
+
+		if(form.getTimelimit().length() != 10) {
+			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
+		}
+
 		try {
 
 			if(form.getTimelimit().equals("")) {
@@ -104,15 +107,16 @@ public class EntryServlet extends HttpServlet {
 
 			}else if(form.getTimelimit().contains("/")){
 				LocalDate.parse(HTMLUtils.change(form.getTimelimit()));
+
 			}else {
 				LocalDate.parse(form.getTimelimit());
 			}
 
 		}catch(NullPointerException e) {
-			return errorList;
+				return errorList;
 		}catch(RuntimeException e) {
-			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
-			return errorList;
+				errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
+				return errorList;
 		}
 
 		return errorList;

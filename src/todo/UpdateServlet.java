@@ -103,6 +103,10 @@ public class UpdateServlet extends HttpServlet {
 
 		//期限
 
+		if(form.getTimelimit().length() != 10) {
+			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
+		}
+
 		try {
 
 			if(form.getTimelimit().equals("")) {
@@ -110,16 +114,18 @@ public class UpdateServlet extends HttpServlet {
 
 			}else if(form.getTimelimit().contains("/")){
 				LocalDate.parse(HTMLUtils.change(form.getTimelimit()));
+
 			}else {
 				LocalDate.parse(form.getTimelimit());
 			}
 
 		}catch(NullPointerException e) {
-			return errorList;
+				return errorList;
 		}catch(RuntimeException e) {
-			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
-			return errorList;
+				errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
+				return errorList;
 		}
+
 
 		return errorList;
 

@@ -17,7 +17,7 @@ public class HTMLUtils {
 
 	}
 
-	public static String change(String timelimit) {
+	public static String change(String timelimit) {//2015/06/251
 		String date;
 		String year = timelimit.substring(0, 4) + "-";
 		String month = timelimit.substring(5,7) + "-";
