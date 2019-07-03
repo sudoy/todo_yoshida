@@ -60,14 +60,17 @@ public class EntryServlet extends HttpServlet {
 			return;
 
 		}else {
+			//成功メッセージをListに貯める
+			List<String> sessionList = new ArrayList<>();
+
+			//Serviceのupdateメソッドを利用
+			sessionList.add("#todoを追加しました。");
+			session.setAttribute("message", sessionList);
 
 			//Serviceのinsertメソッドを利用
 			Service s = new Service();
 			s.insert(form);
 
-			session.setAttribute("message", "追加");
-			session.setAttribute("id", "todo");
-			session.setAttribute("error", validateform);
 			resp.sendRedirect("index.html");
 
 		}

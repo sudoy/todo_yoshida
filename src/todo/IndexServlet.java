@@ -23,16 +23,14 @@ public class IndexServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		//sessionを開始
 		HttpSession session = req.getSession();
-		String message = (String)session.getAttribute("message");
-		String id = (String) session.getAttribute("id");
+		List<String> message = (List<String>) session.getAttribute("message");
 
 		Service s = new Service();
 		List<IndexForm> form = new ArrayList<>();
 		form = s.findAll();
 
+		//Listで追加したメッセージをセット
 		session.setAttribute("message",message);
-
-		session.setAttribute("id", id);
 		req.setAttribute("form", form);
 
 		//値をjspに送信

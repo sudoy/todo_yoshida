@@ -64,10 +64,12 @@ public class UpdateServlet extends HttpServlet {
 			return;
 
 		} else {
+			//成功メッセージをListに貯める
+			List<String> sessionList = new ArrayList<>();
 
 			//Serviceのupdateメソッドを利用
-			session.setAttribute("message", "更新");
-			session.setAttribute("id", id);
+			sessionList.add("#" + id + "を更新しました。");
+			session.setAttribute("message", sessionList);
 			Service s = new Service();
 			s.update(form);
 
@@ -103,7 +105,7 @@ public class UpdateServlet extends HttpServlet {
 
 		//期限
 
-		if(form.getTimelimit().length() != 10) {
+		if(form.getTimelimit().length() != 10 && !(form.getTimelimit().equals(""))) {
 			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
 			return errorList;
 		}

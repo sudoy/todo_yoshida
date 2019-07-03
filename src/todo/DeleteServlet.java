@@ -36,8 +36,14 @@ public class DeleteServlet extends HttpServlet {
 		}else {
 			//session開始
 			HttpSession session = req.getSession();
-			session.setAttribute("message", "削除");
-			session.setAttribute("id", id);
+
+			//成功メッセージをListに貯める
+			List<String> sessionList = new ArrayList<>();
+
+			//Serviceのupdateメソッドを利用
+			sessionList.add("#" + id + "を更新しました。");
+			session.setAttribute("message", sessionList);
+
 			//Serviceのdeleteメソッド呼び出し
 			Service s = new Service();
 			s.delete(id);

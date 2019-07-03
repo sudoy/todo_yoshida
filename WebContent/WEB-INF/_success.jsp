@@ -1,12 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="alert alert-success" role="alert">
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	<span aria-hidden="true">&times;</span></button>
 
 	<p><b>完了しました！</b><p>
-
+	<!-- 成功メッセージもループで出力 -->
 		<ul>
-			<li>#${sessionScope['id']}を${sessionScope['message']}しました。</li>
+			<c:forEach items="${sessionScope['message']}" var="i">
+				<li>${i}</li>
+			</c:forEach>
 		</ul>
 
 </div><!--alert-success-->
