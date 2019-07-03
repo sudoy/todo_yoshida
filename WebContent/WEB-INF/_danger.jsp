@@ -8,7 +8,7 @@
 	<p><b>エラーが発生しました！</b></p>
 	<!-- エラーメッセージをループで抽出する -->
 		<ul>
-			<c:forEach items="${error}" var="i">
+			<c:forEach items="${sessionScope['error']}" var="i">
 				<li>${i}</li>
 			</c:forEach>
 		</ul>

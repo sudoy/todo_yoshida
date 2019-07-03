@@ -6,7 +6,7 @@
 	<p><b>完了しました！</b><p>
 
 		<ul>
-			<li>No.27のToDoを更新しました。</li>
+			<li>#${sessionScope['id']}を${sessionScope['message']}しました。</li>
 		</ul>
 
 </div><!--alert-success-->

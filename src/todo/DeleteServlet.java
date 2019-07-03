@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import todo.services.Service;
 
@@ -25,12 +26,18 @@ public class DeleteServlet extends HttpServlet {
 		errorList = validate(id);
 
 		if(!(errorList.size() == 0)) {
-			req.setAttribute("error", errorList);
+			//session開始
+			HttpSession session = req.getSession();
+			session.setAttribute("error", errorList);
 			getServletContext().getRequestDispatcher("/WEB-INF/update.jsp")
 			.forward(req, resp);
 			return;
 
 		}else {
+			//session開始
+			HttpSession session = req.getSession();
+			session.setAttribute("message", "削除");
+			session.setAttribute("id", id);
 			//Serviceのdeleteメソッド呼び出し
 			Service s = new Service();
 			s.delete(id);

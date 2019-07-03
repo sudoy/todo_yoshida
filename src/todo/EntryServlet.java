@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import todo.forms.EntryForm;
 import todo.services.Service;
@@ -21,6 +22,7 @@ public class EntryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		//entry.jspへ移動
 		getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 	}
 
@@ -29,6 +31,9 @@ public class EntryServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
+
+		//session開始
+		HttpSession session = req.getSession();
 
 		//jspから入力された値を取得
 		String name = req.getParameter("name");
@@ -46,11 +51,12 @@ public class EntryServlet extends HttpServlet {
 		//error処理
 		if(!(validateform.size() == 0)) {
 
-			req.setAttribute("error", validateform);
 			req.setAttribute("form", form);
+			session.setAttribute("error", validateform);
 
 			getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp")
 			.forward(req, resp);
+
 			return;
 
 		}else {
@@ -58,7 +64,13 @@ public class EntryServlet extends HttpServlet {
 			//Serviceのinsertメソッドを利用
 			Service s = new Service();
 			s.insert(form);
+
+			session.setAttribute("message", "追加");
+			System.out.println("hogehoge");
+			session.setAttribute("error", validateform);
 			resp.sendRedirect("index.html");
+
+
 		}
 	}
 
@@ -69,11 +81,12 @@ public class EntryServlet extends HttpServlet {
 		List<String> errorList = new ArrayList<>();
 		int priority = Integer.parseInt(form.getPriority());
 
-		//題名
+		//題名必須
 		if(form.getName().equals("")) {
 			errorList.add("題名の入力は必須です");
 		}
 
+		//題名100文字以内
 		if(100 < form.getName().length()) {
 			errorList.add("題名は100文字以内です。");
 		}
@@ -84,7 +97,6 @@ public class EntryServlet extends HttpServlet {
 		}
 
 		//期限
-
 		try {
 
 			if(form.getTimelimit().equals("")) {

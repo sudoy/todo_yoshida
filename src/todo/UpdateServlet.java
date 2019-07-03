@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import todo.forms.UpdateForm;
 import todo.services.Service;
@@ -37,6 +38,8 @@ public class UpdateServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
+		//session開始
+		HttpSession session = req.getSession();
 
 
 		String id = req.getParameter("id");
@@ -53,7 +56,7 @@ public class UpdateServlet extends HttpServlet {
 		//error処理
 		if (!(validateform.size() == 0)) {
 
-			req.setAttribute("error", validateform);
+			session.setAttribute("error", validateform);
 			req.setAttribute("form", form);
 
 			getServletContext().getRequestDispatcher("/WEB-INF/update.jsp")
@@ -63,8 +66,11 @@ public class UpdateServlet extends HttpServlet {
 		} else {
 
 			//Serviceのupdateメソッドを利用
+			session.setAttribute("message", "更新");
+			session.setAttribute("id", id);
 			Service s = new Service();
 			s.update(form);
+
 			resp.sendRedirect("index.html");
 		}
 	}

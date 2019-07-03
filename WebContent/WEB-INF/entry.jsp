@@ -18,13 +18,7 @@
 	<div class="color">
 	<div class="container body">
 
-
-
-		<jsp:include page="_success.jsp" />
-
-
-
-	<c:if test="${error != null}">
+	<c:if test="sessionScope['count'] != null}">
 
 		<jsp:include page="_danger.jsp" />
 
