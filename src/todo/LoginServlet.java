@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import todo.forms.UserForm;
+import todo.services.Service;
 
 @WebServlet("/login.html")
 public class LoginServlet extends HttpServlet {
@@ -62,9 +63,10 @@ public class LoginServlet extends HttpServlet {
 			}else {
 
 				try {
-
-
 				//エラーなしの場合
+				Service s = new Service();
+				s.findUser(email, password);
+
 				String nameUser = user.getName();
 				session.setAttribute("email", email);
 				session.setAttribute("password", password);
