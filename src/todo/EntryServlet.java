@@ -44,13 +44,15 @@ public class EntryServlet extends HttpServlet {
 		//formに代入
 		EntryForm form = new EntryForm(name,detail,priority,timelimit);
 
-		//validate()は変数化
+		//validateメソッド呼び出し
 		List<String>validateform = new ArrayList<>();
 		validateform = validate(form);
 
-		//error処理
+		//errorチェック
+
 		if(!(validateform.size() == 0)) {
 
+			//エラーありの場合
 			req.setAttribute("form", form);
 			session.setAttribute("error", validateform);
 
@@ -60,12 +62,13 @@ public class EntryServlet extends HttpServlet {
 			return;
 
 		}else {
-			//成功メッセージをListに貯める
-			List<String> sessionList = new ArrayList<>();
 
-			//Serviceのupdateメソッドを利用
-			sessionList.add("#todoを追加しました。");
-			session.setAttribute("message", sessionList);
+			//エラーなしの場合
+
+			//成功メッセージをListに貯める
+			List<String> successList = new ArrayList<>();
+			successList.add("#todoを追加しました。");
+			session.setAttribute("success", successList);
 
 			//Serviceのinsertメソッドを利用
 			Service s = new Service();
@@ -88,7 +91,7 @@ public class EntryServlet extends HttpServlet {
 			errorList.add("題名の入力は必須です");
 		}
 
-		//題名100文字以内
+		//題名100文字制限
 		if(100 < form.getName().length()) {
 			errorList.add("題名は100文字以内です。");
 		}
@@ -99,7 +102,6 @@ public class EntryServlet extends HttpServlet {
 		}
 
 		//期限
-
 		if(form.getTimelimit().length() != 10 && !(form.getTimelimit().equals(""))) {
 			errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
 			return errorList;

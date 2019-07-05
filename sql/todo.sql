@@ -17,3 +17,4 @@ values ('3','テスト3','三番目に優先度が高い','1','2015-06-25');
 
 insert into todo(id,name,detail,priority)
 values ('4','テスト4','四番目に優先度が高い','1');
+

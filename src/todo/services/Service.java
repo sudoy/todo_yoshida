@@ -11,12 +11,15 @@ import javax.servlet.ServletException;
 import todo.forms.EntryForm;
 import todo.forms.IndexForm;
 import todo.forms.UpdateForm;
+import todo.forms.UserForm;
 import todo.utils.DBUtils;
 import todo.utils.HTMLUtils;
 
 public class Service{
 
 	public List<IndexForm> findAll () throws ServletException {
+
+		//IndexServletで使用
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
@@ -87,6 +90,8 @@ public class Service{
 	}
 
 	public UpdateForm find (String id) throws ServletException {
+
+		//UpdateServletのGETメソッドで使用
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
@@ -95,6 +100,8 @@ public class Service{
 
 			//DBと接続する
 			con = DBUtils.getConnection();
+
+			//id検索でDBから抽出
 			//プレースホルダーを使う
 			sql = "SELECT id,name,detail,priority,timelimit FROM todo WHERE id = ?";
 			ps = con.prepareStatement(sql);
@@ -132,13 +139,13 @@ public class Service{
 
 	public void update(UpdateForm form) throws ServletException {
 
-		//UpdateServletで使用
+		//UpdateServletのPOSTメソッドで使用
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 
 		try{
-			//DBへinsert
+			//DBの値をUPDATE
 			con = DBUtils.getConnection();
 			sql = "UPDATE todo set name=?, detail=?, priority=?, timelimit=? where id = ?";
 
@@ -184,6 +191,47 @@ public class Service{
 			}catch(Exception e){}
 		}
 
+	}
+
+	public UserForm findUser (String email , String password) throws ServletException {
+
+		//LoginServletで使用
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+		UserForm f = new UserForm();
+
+		try{
+
+			//DBと接続する userテーブルの値を検索&取得
+			con = DBUtils.getConnection();
+			sql = "SELECT name FROM user WHERE email = ? ";
+			ps = con.prepareStatement(sql);
+			ps.setString(1,email);
+			rs = ps.executeQuery();
+			System.out.println(rs);
+
+			//DBの値の取り出し
+			while(rs.next()){
+
+				String name = rs.getString("name");
+				System.out.println(name);
+
+				//DBの値をセットして送信
+				f.setName(name);
+			}
+
+		}catch(Exception e){
+			return f;
+
+		}finally{
+			try{
+				DBUtils.close(con, rs, ps);
+			}catch (Exception e){}
+
+		}
+		return f;
 	}
 
 }

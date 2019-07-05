@@ -23,21 +23,20 @@ public class IndexServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		//sessionを開始
 		HttpSession session = req.getSession();
-		List<String> message = (List<String>) session.getAttribute("message");
 
+		//ServiceのfindAllメソッドでDBの全リストを取得
 		Service s = new Service();
 		List<IndexForm> form = new ArrayList<>();
 		form = s.findAll();
-
-		//Listで追加したメッセージをセット
-		session.setAttribute("message",message);
 		req.setAttribute("form", form);
 
 		//値をjspに送信
 		getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 
-		//sessionを終了
-		session.invalidate();
+		//sessionを初期化
+		session.setAttribute("success", null);
+		session.setAttribute("error", null);
+
 	}
 }
 

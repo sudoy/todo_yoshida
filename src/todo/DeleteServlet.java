@@ -20,29 +20,33 @@ public class DeleteServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
+		//session開始
+		HttpSession session = req.getSession();
 
+		//id値の取得
 		String id = req.getParameter("id");
+
+		//エラーメッセージ用の変数を作成&validateにかける
 		List<String> errorList = new ArrayList<>();
 		errorList = validate(id);
 
 		if(!(errorList.size() == 0)) {
-			//session開始
-			HttpSession session = req.getSession();
+
+			//エラーありの場合
 			session.setAttribute("error", errorList);
 			getServletContext().getRequestDispatcher("/WEB-INF/update.jsp")
 			.forward(req, resp);
 			return;
 
 		}else {
-			//session開始
-			HttpSession session = req.getSession();
+
+			//エラーなしの場合
 
 			//成功メッセージをListに貯める
-			List<String> sessionList = new ArrayList<>();
+			List<String> successList = new ArrayList<>();
 
-			//Serviceのupdateメソッドを利用
-			sessionList.add("#" + id + "を更新しました。");
-			session.setAttribute("message", sessionList);
+			successList.add("#" + id + "を削除しました。");
+			session.setAttribute("success", successList);
 
 			//Serviceのdeleteメソッド呼び出し
 			Service s = new Service();
@@ -50,6 +54,7 @@ public class DeleteServlet extends HttpServlet {
 			resp.sendRedirect("index.html");
 		}
 	}
+
 
 	private List<String> validate(String id) {
 

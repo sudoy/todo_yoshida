@@ -8,7 +8,7 @@
 	<p><b>完了しました！</b><p>
 	<!-- 成功メッセージもループで出力 -->
 		<ul>
-			<c:forEach items="${sessionScope['message']}" var="i">
+			<c:forEach items="${sessionScope['success']}" var="i">
 				<li>${i}</li>
 			</c:forEach>
 		</ul>

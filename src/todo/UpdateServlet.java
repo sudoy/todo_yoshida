@@ -24,7 +24,10 @@ public class UpdateServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 
+		//id値を取得
 		String id = req.getParameter("id");
+
+		//DBからid検索で値を取得
 		Service s = new Service();
 		UpdateForm form = new UpdateForm();
 		form = s.find(id);
@@ -56,6 +59,7 @@ public class UpdateServlet extends HttpServlet {
 		//error処理
 		if (!(validateform.size() == 0)) {
 
+			//エラーありの場合
 			session.setAttribute("error", validateform);
 			req.setAttribute("form", form);
 
@@ -64,12 +68,15 @@ public class UpdateServlet extends HttpServlet {
 			return;
 
 		} else {
+
+			//エラーなしの場合
+
 			//成功メッセージをListに貯める
-			List<String> sessionList = new ArrayList<>();
+			List<String> successList = new ArrayList<>();
 
 			//Serviceのupdateメソッドを利用
-			sessionList.add("#" + id + "を更新しました。");
-			session.setAttribute("message", sessionList);
+			successList.add("#" + id + "を更新しました。");
+			session.setAttribute("success", successList);
 			Service s = new Service();
 			s.update(form);
 
@@ -89,11 +96,12 @@ public class UpdateServlet extends HttpServlet {
 			errorList.add("idの入力は必須です。");
 		}
 
-		//題名
+		//題名必須
 		if(form.getName().equals("")) {
 			errorList.add("題名の入力は必須です");
 		}
 
+		//題名100文字制限
 		if(100 < form.getName().length()) {
 			errorList.add("題名は100文字以内です。");
 		}
@@ -128,7 +136,6 @@ public class UpdateServlet extends HttpServlet {
 				errorList.add("期限は「YYYY/MM/DD」形式で入力してください。");
 				return errorList;
 		}
-
 
 		return errorList;
 

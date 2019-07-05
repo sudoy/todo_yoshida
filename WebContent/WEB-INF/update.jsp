@@ -18,7 +18,7 @@
 	<div class="color">
 	<div class="container body">
 
-
+	<!-- エラーメッセージ -->
 	<c:if test="${sessionScope['error'] != null}">
 
 		<jsp:include page="_danger.jsp" />
@@ -29,7 +29,6 @@
 			<p><b>更新フォーム</b></p>
 			<hr>
 		<form class="form-horizontal" method="POST" action ="update.html">
-
 				<input type="hidden" name="id" value="${form.id}">
 
   			<div class="form-group">
@@ -40,6 +39,8 @@
     		</div>
   		</div><!--form-group閉じ-->
 
+
+
  		 <div class="form-group">
     		<label for="inputPassword3" class="col-sm-2 control-label">詳細</label>
     		<div class="col-sm-8">
@@ -47,23 +48,31 @@
     		</div>
   		</div><!--form-group閉じ-->
 
+
+
    		<div class="form-group">
     		<label for="inputPassword3" class="col-sm-2 control-label">重要度</label>
    			 <div class="col-sm-4" id="radio">
+
     			<label class="radio-inline">
  				<input type="radio" name="priority" id="inlineRadio3" value="3"
  				<c:if test="${form.priority == 3}">checked</c:if>>★★★
 				</label><br>
+
 				<label class="radio-inline">
   				<input type="radio" name="priority" id="inlineRadio2" value="2"
   				<c:if test="${form.priority == 2}">checked</c:if>>★★
 				</label><br>
+
 				<label class="radio-inline">
   				<input type="radio" name="priority" id="inlineRadio1" value="1"
   				<c:if test="${form.priority == 1}">checked</c:if>>★
 				</label>
+
     		</div><!--radio閉じ-->
   		</div><!--form-group閉じ-->
+
+
 
   		<div class="form-group">
     		<label for="inputPassword3" class="col-sm-2 control-label">期限</label>
@@ -73,14 +82,16 @@
     		</div>
   		</div><!--form-group閉じ-->
 
+
+
 		<div class="form-group">
     		<div class="col-sm-offset-2 col-sm-8">
     			<button type="button" class="btn btn-default"
     			onclick="location.href='index.html'">キャンセル</button>
+
     			<button type="submit" class="btn btn-primary" name="update">更新</button>
 
     			<!-- aタグがbuttonタグを兼ね備えている -->
-
     			<a href="delete.html?id=${form.id}" class="btn btn-danger">削除</a>
 
 			</div>

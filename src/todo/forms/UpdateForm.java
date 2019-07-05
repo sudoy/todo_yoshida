@@ -1,11 +1,11 @@
 package todo.forms;
 
 public class UpdateForm {
-	String id;
-	String name;
-	String detail;
-	String priority;
-	String timelimit;
+	private String id;
+	private String name;
+	private String detail;
+	private String priority;
+	private String timelimit;
 	public UpdateForm(String id, String name, String detail, String priority, String timelimit) {
 		super();
 		this.id = id;
